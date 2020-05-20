@@ -1,8 +1,11 @@
 require 'nokogiri'
 require 'httparty'
 require 'byebug'
+require 'csv'
 
 def scraper
+  books_csv = CSV.open('Book_Recommendations.csv', 'a+')
+  books_csv << %w[Section Title Author Time Description]
   url = 'https://www.nytimes.com/books/best-sellers/'
   unparsed_page = HTTParty.get(url)
   parsed_page = Nokogiri::HTML(unparsed_page)
@@ -22,6 +25,7 @@ def scraper
       ]
       i += 1
       books << book
+      books_csv << book
     end
   end
 end
