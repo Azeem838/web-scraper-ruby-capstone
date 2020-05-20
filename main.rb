@@ -20,7 +20,7 @@ def scraper
         section_name = section.css('a.css-nzgijy').text,
         books_shown[i].css('h3.css-i1z3c1').text,
         books_shown[i].css('p.css-1nxjbfc').text,
-        books_shown[i].css('p.css-t7cods').text,
+        books_shown[i].css('p.css-t7cods').text.gsub(/\D/, '').to_i,
         books_shown[i].css('p.css-5yxv3r').text
       ]
       i += 1
@@ -29,5 +29,4 @@ def scraper
     end
   end
 end
-
 scraper
