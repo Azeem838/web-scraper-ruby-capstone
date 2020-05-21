@@ -15,7 +15,7 @@ class BookData
   end
 
   def book_info
-    SCRAPPED_NYT_PAGE.css('li.css-1mr03gh') # 55 books
+    NYTPAGE_CONST.css('li.css-1mr03gh')
   end
 
   def title

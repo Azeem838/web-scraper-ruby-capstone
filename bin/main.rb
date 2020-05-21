@@ -10,15 +10,16 @@ require_relative '../lib/book_data.rb'
 require_relative '../lib/goodreads_scraper.rb'
 require_relative '../lib/ratings.rb'
 
-SCRAPPED_NYT_PAGE = scrap_nytimes
+NYTPAGE_CONST = ScrapNYT.new.scrap_sections
 
 books_csv = create_csv
 all_books = []
 i = 0
 j = 0
-# progressbar = ProgressBar.create(format: '%a <%B> %p%% %t')
 
-sections.each do |section|
+progressbar = ProgressBar.create(format: '%a <%B> %p%% %t')
+
+NYTPAGE_CONST.each do |section|
   5.times do
     book = BookData.new(i, section).book_data_array
     i += 1
@@ -32,8 +33,7 @@ sections.each do |section|
         book.insert(5, rating.num_of_ratings)
         good_reads.close_browser
         j += 1
-        p j
-        # progressbar.increment
+        progressbar.increment
       rescue StandardError
         retry
       end
