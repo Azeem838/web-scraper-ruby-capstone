@@ -1,22 +1,22 @@
 #!/usr/bin/env ruby
 require 'nokogiri'
-require 'httparty'
 require 'byebug'
 require 'watir'
 require 'csv'
 require 'ruby-progressbar'
+require 'open-uri'
 require_relative '../lib/methods.rb'
 require_relative '../lib/book_data.rb'
-require_relative '../lib/scraper.rb'
+require_relative '../lib/goodreads_scraper.rb'
 require_relative '../lib/ratings.rb'
 
-SCRAPPED_NYT_PAGE = Scraper.new.scrap_nytimes
+SCRAPPED_NYT_PAGE = scrap_nytimes
 
 books_csv = create_csv
 all_books = []
 i = 0
 j = 0
-progressbar = ProgressBar.create(format: '%a <%B> %p%% %t')
+# progressbar = ProgressBar.create(format: '%a <%B> %p%% %t')
 
 sections.each do |section|
   5.times do
@@ -24,17 +24,16 @@ sections.each do |section|
     i += 1
     all_books << book
     until j == all_books.count
-      browser = Scraper.new.scrap_goodreads(j, all_books)
-      rating = Ratings.new(browser)
+      good_reads = GReadsScraper.new(j, all_books)
+      rating = Ratings.new(good_reads.html)
       begin
         sleep 2
-        avg_rating = rating.avg_rating
-        num_of_ratings = rating.num_of_ratings
-        book.insert(4, avg_rating)
-        book.insert(5, num_of_ratings)
-        browser.close
+        book.insert(4, rating.avg_rating)
+        book.insert(5, rating.num_of_ratings)
+        good_reads.close_browser
         j += 1
-        progressbar.increment
+        p j
+        # progressbar.increment
       rescue StandardError
         retry
       end
