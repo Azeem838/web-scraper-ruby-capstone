@@ -5,19 +5,22 @@ require 'csv'
 require 'ruby-progressbar'
 require 'open-uri'
 require 'selenium-webdriver'
-require_relative '../lib/csv_creation.rb'
+require_relative '../lib/nyt_scraper.rb'
 require_relative '../lib/book_data.rb'
-require_relative '../lib/scrapers.rb'
+require_relative '../lib/gr_scraper.rb'
 require_relative '../lib/ratings.rb'
 
 NYTPAGE_CONST = ScrapNYT.new.scrap_sections
 
-books_csv = create_csv
+new_csv = CSV.open('csv_output/Book_Recommendations.csv', 'a+')
+new_csv << %w[Section Title Author Time(Weeks) Avg_Rating Num_of_Ratings Description Link]
+
+books_csv = new_csv
 all_books = []
 i = 0
 j = 0
 
-progressbar = ProgressBar.create(format: '%a <%B> %p%% %t')
+progressbar = ProgressBar.create(title: 'Books', total: 55, length: 80, format: '%a <%B> %p%% %t')
 
 driver = Selenium::WebDriver.for :chrome
 wait = Selenium::WebDriver::Wait.new(timeout: 10)
