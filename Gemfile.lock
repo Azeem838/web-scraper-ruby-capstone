@@ -14,6 +14,7 @@ GEM
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     regexp_parser (1.7.0)
+    ruby-progressbar (1.10.1)
     rubyzip (2.3.0)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
@@ -29,6 +30,7 @@ DEPENDENCIES
   byebug
   httparty
   nokogiri
+  ruby-progressbar
   watir
 
 BUNDLED WITH
