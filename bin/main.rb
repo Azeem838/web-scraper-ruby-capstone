@@ -5,7 +5,6 @@ require 'csv'
 require 'ruby-progressbar'
 require 'open-uri'
 require 'selenium-webdriver'
-require_relative '../lib/nyt_scraper.rb'
 require_relative '../lib/book_data.rb'
 require_relative '../lib/gr_scraper.rb'
 require_relative '../lib/ratings.rb'
@@ -33,13 +32,13 @@ NYTPAGE_CONST.each do |section|
     i += 1
     all_books << book
     until j == all_books.count
-      good_reads = GReadsScraper.new(j, all_books, driver)
-      rating = Ratings.new(good_reads.html)
+      GReadsScraper.new(j, all_books, driver).scrap_goodreads
+      rating = Ratings.new(driver)
       avg_rating = wait.until { rating.avg_rating }
       num_of_ratings = wait.until { rating.num_of_ratings }
       book.insert(4, avg_rating)
       book.insert(5, num_of_ratings)
-      good_reads.reset_browser
+      GReadsScraper.new(driver).reset_browser
       j += 1
       progressbar.increment
     end

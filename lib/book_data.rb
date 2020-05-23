@@ -1,4 +1,5 @@
 class BookData
+  attr_reader :book_data_array
   def initialize(book_info_index, section_index)
     @book_info_index = book_info_index
     @section_index = section_index
