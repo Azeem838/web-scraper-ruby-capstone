@@ -1,6 +1,6 @@
 class ScrapNYT
   def scrap_nytimes
-    Nokogiri::HTML(open('https://www.nytimes.com/books/best-sellers/'))
+    Nokogiri::HTML(URI.open('https://www.nytimes.com/books/best-sellers/'))
   end
 
   def scrap_sections
