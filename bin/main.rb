@@ -10,7 +10,8 @@ require_relative '../lib/book_data.rb'
 require_relative '../lib/gr_scraper.rb'
 require_relative '../lib/ratings.rb'
 
-NYTPAGE_CONST = ScrapNYT.new.scrap_sections
+scrap_nytimes = Nokogiri::HTML(URI.open('https://www.nytimes.com/books/best-sellers/'))
+NYTPAGE_CONST = scrap_nytimes.css('section.e8j42380')
 
 new_csv = CSV.open('csv_output/Book_Recommendations.csv', 'a+')
 new_csv << %w[Section Title Author Time(Weeks) Avg_Rating Num_of_Ratings Description Link]
