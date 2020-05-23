@@ -6,7 +6,7 @@ require_relative '../lib/gr_scraper.rb'
 require_relative '../lib/ratings.rb'
 
 describe '.gr_scraper' do
-  let(:test_gr_scraper) { GReadsScraper.new(0, [['CAMINO WINDS']], driver) }
+  let(:test_gr_scraper) { GReadsScraper.new(driver, 0, [['CAMINO WINDS']]) }
   let(:driver) { Selenium::WebDriver.for :chrome, options: options }
   let(:options) { Selenium::WebDriver::Chrome::Options.new }
 
@@ -14,7 +14,7 @@ describe '.gr_scraper' do
     it '#scrap_goodreads must return nil after loading the page' do
       options.add_argument('--headless')
       driver.get('https://goodreads.com')
-      expect(driver.find_element(id: 'sitesearch_field').send_keys "Camino Winds").to be nil
+      expect(driver.find_element(id: 'sitesearch_field').send_keys('Camino Winds')).to be nil
     end
   end
 

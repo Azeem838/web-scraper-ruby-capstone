@@ -1,6 +1,6 @@
 class GReadsScraper
   attr_reader :reset_browser, :scrap_goodreads
-  def initialize(title_index = nil, all_books = nil, driver)
+  def initialize( driver, title_index = nil, all_books = nil)
     @title_index = title_index
     @all_books = all_books
     @driver = driver

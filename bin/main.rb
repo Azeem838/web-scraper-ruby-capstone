@@ -32,7 +32,7 @@ begin
       i += 1
       all_books << book
       until j == all_books.count
-        GReadsScraper.new(j, all_books, driver).scrap_goodreads
+        GReadsScraper.new(driver, j, all_books).scrap_goodreads
         rating = Ratings.new(driver)
         avg_rating = wait.until { rating.avg_rating }
         num_of_ratings = wait.until { rating.num_of_ratings }
