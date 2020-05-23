@@ -8,6 +8,8 @@ This project includes the following features:
 2. Book info is used from step 1 and finds the user ratings and number of ratings from [goodreads](https://www.goodreads.com/)
 3. Finally, everything gets displayed categorically in a CSV file
 
+#### [I present it all to you!](https://www.loom.com/share/e26883bca4ef4caf8a4b4c6c7fef17ae)
+
 ## Built With
 
 - Ruby
