@@ -1,7 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
 require 'selenium-webdriver'
-require_relative '../lib/nyt_scraper.rb'
 require_relative '../lib/book_data.rb'
 require_relative '../lib/gr_scraper.rb'
 require_relative '../lib/ratings.rb'

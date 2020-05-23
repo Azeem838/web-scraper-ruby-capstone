@@ -45,6 +45,6 @@ begin
       books_csv << book
     end
   end
-ensure 
+ensure
   driver.quit
 end

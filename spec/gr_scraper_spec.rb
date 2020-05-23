@@ -1,7 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
 require 'selenium-webdriver'
-require_relative '../lib/nyt_scraper.rb'
 require_relative '../lib/book_data.rb'
 require_relative '../lib/gr_scraper.rb'
 require_relative '../lib/ratings.rb'
@@ -11,11 +10,11 @@ describe '.gr_scraper' do
   let(:driver) { Selenium::WebDriver.for :chrome, options: options }
   let(:options) { Selenium::WebDriver::Chrome::Options.new }
 
-  context '#html method testing' do
-    it '#html must respond to #at_css' do
+  context '#scrap_goodreads method testing' do
+    it '#scrap_goodreads must return nil after loading the page' do
       options.add_argument('--headless')
       driver.get('https://goodreads.com')
-      expect(test_gr_scraper.html).respond_to? :at_css
+      expect(driver.find_element(id: 'sitesearch_field').send_keys "Camino Winds").to be nil
     end
   end
 
