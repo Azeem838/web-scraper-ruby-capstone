@@ -1,6 +1,6 @@
 # New York Times Best Sellers Curated with GoodReads.com User Ratings (Capstone Project)
 
-> This project scrapes the New York Times best selling books and finds the corresponding user ratings, combining them into a CSV file.
+> This project scrapes the New York Times best selling books and finds the corresponding user ratings, combining them into a CSV file. Built for the Ruby Capstone project in the Microverse curriculum.
 
 This project includes the following features:
 
