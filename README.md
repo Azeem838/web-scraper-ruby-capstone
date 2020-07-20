@@ -43,6 +43,7 @@ This project includes the following features:
 👤 **Azeem Ahmed**
 
 - Github: [@Azeem838](https://github.com/Azeem838)
+- LinkedIn: [Azeem Ahmed](https://www.linkedin.com/in/azeem-ahmed-a56a25101/)
 
 ## 🤝 Contributing
 
